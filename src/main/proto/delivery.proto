@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.example.delivery.proto";
+option java_outer_classname = "DeliveryProto";
+
+service DeliveryTrackingService {
+
+  rpc GetCurrentLocation(LocationRequest)
+      returns (LocationResponse);
+
+  rpc StreamLocation(LocationRequest)
+      returns (stream LocationResponse);
+}
+
+message LocationRequest {
+  string delivery_id = 1;
+}
+
+message LocationResponse {
+  string delivery_id = 1;
+  double latitude = 2;
+  double longitude = 3;
+  int64 timestamp = 4;
+}
